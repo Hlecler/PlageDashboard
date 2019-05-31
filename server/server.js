@@ -9,7 +9,7 @@ import {sessions} from "./data/sessions";
 const app = express();
 const port = process.env.PORT || 5000;
 
-
+const plage = process.env.PLAGE_URL || "https://plage.igpolytech.fr"
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 
 app.get("/user/:id", (req, res) => {
 	const id = req.params.id;
-	axios.get('https://plage.igpolytech.fr/API/user/' + id)
+	axios.get(plage + '/API/user/' + id)
 	.then(response => {
 		if (response.status = 200) {
 			res.writeHead(200, {"Content-Type": "application/json"});
@@ -50,7 +50,7 @@ app.get("/user/:id", (req, res) => {
 
 app.get("/user/rendus/:id", (req, res) => {
 	const id = req.params.id;
-	axios.get('https://plage.igpolytech.fr/API/ExerciseProduction/student/' + id)
+	axios.get(plage + '/API/ExerciseProduction/student/' + id)
 	.then(response => {
 		res.writeHead(200, {"Content-Type": "application/json"});
 		res.data = response.data;
@@ -72,7 +72,7 @@ app.get("/user/rendus/:id", (req, res) => {
 
 app.get("/exercises/rendus/:id", (req, res) => {
 	const id = req.params.id;
-	axios.get('https://plage.igpolytech.fr/API/ExerciseProduction/exercise/' + id)
+	axios.get(plage + '/API/ExerciseProduction/exercise/' + id)
 	.then(response => {
 		res.writeHead(200, {"Content-Type": "application/json"});
 		res.data = response.data;
@@ -83,6 +83,27 @@ app.get("/exercises/rendus/:id", (req, res) => {
 			res.writeHead(404, {"Content-Type": "text/plain"});
 			res.data = "no users found.";
 			res.end("Error : No users found.");
+		}
+		else {
+			res.writeHead(500, {"Content-Type": "text/plain"});
+			res.data = "An error occured.";
+			res.end("Error : An error occured.");
+		}
+	});
+});
+
+app.get("/logs", (req, res) => {
+	axios.get(plage + '/api/LMSLogging/')
+	.then(response => {
+		res.writeHead(200, {"Content-Type": "application/json"});
+		res.data = response.data;
+		res.end(JSON.stringify(response.data));
+	})
+	.catch(e => {
+		if (e.status = 404) {
+			res.writeHead(404, {"Content-Type": "text/plain"});
+			res.data = "no logs found.";
+			res.end("Error : No logs found.");
 		}
 		else {
 			res.writeHead(500, {"Content-Type": "text/plain"});
