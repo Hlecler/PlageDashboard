@@ -1,0 +1,27 @@
+{
+  "name": "plagedashboardapi",
+  "version": "1.0.0",
+  "description": "the server for plagedashboard",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "expressjs": "^1.0.1",
+    "mongodb": "^3.1.10",
+    "nodemon": "^1.18.11",
+    "request": "^2.88.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
+  },
+  "scripts": {
+    "start": "nodemon server/start.js"
+  },
+  "author": "hugo lecler",
+  "license": "ISC"
+}
