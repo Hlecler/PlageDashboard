@@ -20,7 +20,7 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
-    "start": "nodemon start.js"
+    "start": "nodemon server/start.js"
   },
   "author": "hugo lecler",
   "license": "ISC"

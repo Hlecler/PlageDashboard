@@ -1,7 +1,6 @@
 require("dotenv").load();
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
 const axios = require('axios')
 
 import {User, users} from "./data/users";
