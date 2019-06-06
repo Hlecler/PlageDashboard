@@ -19,6 +19,11 @@ app.use(function(req, res, next) {
 	next();
   });
 
+app.get("/", (req, res) => {
+	res.writeHead(200, {"Content-Type": "text/plain"});
+	res.data = "Bienvenue sur le back de PlageDashboard."
+	res.end(res.data)
+})
 app.get("/user/:id", (req, res) => {
 	const id = req.params.id;
 	axios.get(plage + '/API/user/' + id)

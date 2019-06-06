@@ -4,7 +4,7 @@
   "description": "the server for plagedashboard",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "dotenv": "^6.2.0",
