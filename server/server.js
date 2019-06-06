@@ -35,7 +35,7 @@ app.get("/user/:id", (req, res) => {
 		}
 		else {
 			res.writeHead(500);
-			res.end();
+			res.end("An error occured in Plage.");
 		}
 
 	})
@@ -57,9 +57,15 @@ app.get("/user/rendus/:id", (req, res) => {
 	const id = req.params.id;
 	axios.get(plage + '/API/ExerciseProduction/student/' + id)
 	.then(response => {
-		res.writeHead(200, {"Content-Type": "application/json"});
-		res.data = response.data;
-		res.end(JSON.stringify(response.data));
+		if (Array.isArray(response.data)){
+			res.writeHead(200, {"Content-Type": "application/json"});
+			res.data = response.data;
+			res.end(JSON.stringify(response.data));
+		}
+		else {
+			res.writeHead(500, {"Content-Type": "text/plain"});
+			res.end("An error occured in Plage.");
+		}
 	})
 	.catch(e => {
 		if (e.status = 404) {
@@ -79,9 +85,15 @@ app.get("/exercises/rendus/:id", (req, res) => {
 	const id = req.params.id;
 	axios.get(plage + '/API/ExerciseProduction/exercise/' + id)
 	.then(response => {
-		res.writeHead(200, {"Content-Type": "application/json"});
-		res.data = response.data;
-		res.end(JSON.stringify(response.data));
+		if (Array.isArray(response.data)){
+			res.writeHead(200, {"Content-Type": "application/json"});
+			res.data = response.data;
+			res.end(JSON.stringify(response.data));
+		}
+		else {
+			res.writeHead(500, {"Content-Type": "text/plain"});
+			res.end("An error occured in Plage.");
+		}
 	})
 	.catch(e => {
 		if (e.status = 404) {
