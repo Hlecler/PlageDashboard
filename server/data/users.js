@@ -17,7 +17,7 @@ class Users {
     }
 
     findByLogin(id, pwd){
-        return this.users.find(u => u.id == id && u.pwd == pwd);
+        return this.users.find(u => u.id.toLowerCase() == id.toLowerCase() && u.pwd == pwd);
     }
 
     findById(id){
